@@ -33,7 +33,7 @@ def scrape_row(row)
     origin = nil
   end
 
-  w = Root.new(root_db: root, meanings: meanings, origin: origin)
+  r = Root.new(root_db: root, meaning: meanings, origin: origin)
 
   link = row.to_html.match(/(word_lists\/view\/\d*)/).captures.first
   derived_words = scrape_words(link)
@@ -49,7 +49,10 @@ def scrape_words(link)
   words.strip.split(',').map{|word| word.strip}.each do |word|
     #save word to db
     puts word
+    word = Word.where(word: word).first || Word.new(word: word)
+    derived_words << word
   end  
+  derived_words
 end
 
 scrape
