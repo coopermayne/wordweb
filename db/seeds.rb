@@ -46,13 +46,14 @@ end
 def scrape_words(link)
   doc = Nokogiri::HTML(open("http://www.learnthat.org/#{link}"))
   words = doc.css('.chapter_words').map{|elem| elem.text}.join
-  words.strip.split(',').map{|word| word.strip}.each do |word|
-    #save word to db
+  derived_words = []
+
+  words = words.split(',').map{|word| word.strip}
+  words = words.map do |word|
     puts word
-    word = Word.where(word: word).first || Word.new(word: word)
-    derived_words << word
+    Word.where(word: word).first || Word.new(word: word)
   end  
-  derived_words
+  words
 end
 
 scrape
