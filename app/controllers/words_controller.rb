@@ -1,5 +1,5 @@
 class WordsController < ApplicationController
-  def index
+  def index2
     data = 
       {
       name: "flare",
@@ -381,6 +381,12 @@ class WordsController < ApplicationController
         }
       ]
     }
+
+    render json: data
+  end
+
+  def index
+    data = Root.all.sample.nested_json
     render json: data
   end
 end
