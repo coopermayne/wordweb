@@ -71,8 +71,8 @@ function update() {
       .call(force.drag);
 
   nodeEnter.append("ellipse")
-      .attr("rx", function(d) { return d.name.length*7})
-      .attr("ry", 20);
+      .attr("rx", function(d) { return d.name.length*6})
+      .attr("ry", 15);
 
   nodeEnter.append("text")
       .attr("dy", ".35em")

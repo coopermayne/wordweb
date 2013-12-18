@@ -8,7 +8,7 @@ class Root < ActiveRecord::Base
     children =  self.words
                     .reject { |w| w==parent }
                     .sort_by{|word| word.roots.count}
-    children = children[-7,7] || children
+    children = children[-7,7] || children #seven max 
     children.map!{ |w| w.nested_json(self) }
 
     h[:children] = children unless children.empty?
