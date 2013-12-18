@@ -56,4 +56,21 @@ def scrape_words(link)
   words
 end
 
-scrape
+#scrape 
+
+Wordnik.configure do |config|
+  config.api_key = '9955ab21bdae62265b3360167e504ce6f2864356798b6941f'
+end
+
+Word.all.each do |w|
+  next if w.meaning
+  word_def = Wordnik.word.get_definitions(w.word).first
+  word_def = word_def['text'] unless word_def.nil?
+  w.meaning = word_def
+  if w.meaning.nil? || w.meaning.length > 254
+    puts 'problem with' + w.word
+  else
+    puts 'saved:' + w.word
+    w.save
+  end
+end  

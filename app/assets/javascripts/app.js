@@ -1,5 +1,5 @@
-var width = 960,
-    height = 500,
+var width = 850,
+    height = 600,
     root;
 
 var force = d3.layout.force()
@@ -22,7 +22,7 @@ var force = d3.layout.force()
     .size([width, height])
     .on("tick", tick);
 
-var svg = d3.select("body").append("svg")
+var svg = d3.select("svg")
     .attr("width", width)
     .attr("height", height);
 
@@ -68,6 +68,7 @@ function update() {
   var nodeEnter = node.enter().append("g")
       .attr("class", "node")
       .on("click", click)
+      .on("mouseover", function(d) {showPopup(d)})
       .call(force.drag);
 
   nodeEnter.append("ellipse")
@@ -80,6 +81,17 @@ function update() {
 
   node.select("ellipse")
       .style("fill", color);
+}
+
+function showPopup (d) {
+  var el = $('<div class="info"></div>')
+  var term = $('<span class=term></span>').text(d.name + ": ")
+  var def = $('<span class=def></span>').text(d.meaning)
+  el.append(term)
+  el.append(def)
+  $('#info-container').prepend(el)
+  el.toggle();
+  el.slideDown()
 }
 
 function tick() {

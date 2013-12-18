@@ -1,9 +1,16 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <style>
+
 body {
-  background: grey;
+  background: white;
 }
+
+svg {
+  background: grey;
+  float:left
+}
+
 .node ellipse {
   cursor: pointer;
   stroke: #3182bd;
@@ -22,5 +29,38 @@ line.link {
   stroke-width: 1.5px;
 }
 
+#info-container {
+  width: 195px;
+  margin-left:5px;
+  float: right;
+}
+.info {
+  background:black;
+  color: white;
+  margin-bottom: 5px;
+  padding:5px;
+}
+
+.info .term {
+  color:black;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 3px;
+  background:grey;
+}
+
+.info .def {
+  color: white;
+}
+
+#conti {
+  width: 1050px;
+}
+
 </style>
-<body>
+
+<div id='conti'>
+  <svg></svg>
+  <div id='info-container'>
+  </div>
+</div>
