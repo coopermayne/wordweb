@@ -10,7 +10,7 @@ class Word < ActiveRecord::Base
       type: self.class.to_s.downcase
     }
 
-    return h if depth > 1
+    return h if depth > 3
     depth += 1
 
     children = self.roots
