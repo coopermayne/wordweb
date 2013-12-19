@@ -225,6 +225,7 @@ DEPENDENCIES
   jasmine
   jquery-rails
   meta_request
+  nokogiri
   pg
   pry-debugger
   pry-rails

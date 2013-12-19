@@ -36,8 +36,8 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
-gem 'wordnik'
-gem 'nokogiri'
+#gem 'wordnik'
+#gem 'nokogiri'
 
 group :development, :test do
   gem "pry-rails"
