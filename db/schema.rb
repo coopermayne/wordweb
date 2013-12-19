@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131214204050) do
+ActiveRecord::Schema.define(:version => 20131218221058) do
 
   create_table "roots", :force => true do |t|
     t.string   "root_db"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(:version => 20131214204050) do
   end
 
   create_table "words", :force => true do |t|
-    t.string   "meaning"
+    t.text     "meaning"
     t.string   "word"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

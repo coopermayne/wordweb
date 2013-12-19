@@ -68,7 +68,7 @@ function update() {
   var nodeEnter = node.enter().append("g")
       .attr("class", "node")
       .on("click", click)
-      .on("mouseover", function(d) {showPopup(d)})
+      //.on("mouseover", function(d) {showPopup(d)})
       .call(force.drag);
 
   nodeEnter.append("ellipse")
@@ -80,18 +80,41 @@ function update() {
       .text(function(d) { return d.name; });
 
   node.select("ellipse")
-      .style("fill", color);
+      //.style("fill", color);
+      .attr("class", classSetter);
+
+  $("svg").hoverIntent({
+    over: showPopup,
+    out: function(){console.log("out");},
+    selector: '.node'
+  });
 }
 
-function showPopup (d) {
-  var el = $('<div class="info"></div>')
-  var term = $('<span class=term></span>').text(d.name + ": ")
-  var def = $('<span class=def></span>').text(d.meaning)
-  el.append(term)
-  el.append(def)
-  $('#info-container').prepend(el)
-  el.toggle();
-  el.slideDown()
+//if the popup is already in the top 5 don't add it again
+var popupList = [-1,-1,-1];
+
+function showPopup () {
+  var d = this.__data__;
+  if (popupList.indexOf(d.id) == -1){ //not in there...
+    popupList.unshift(d.id);
+    popupList.pop(); // so the list is alway only 3
+
+    var el = $('<div class="info"></div>');
+    if (d.type == 'word') {
+      el.addClass('wordy');
+    }else{
+      el.addClass('rooty');
+    }
+    var term = $('<span class=term></span>').text(d.name + ": ")
+    var def = $('<span class=def></span>').text(d.meaning)
+    el.append(term)
+    el.append(def)
+    $('#infoinfo').prepend(el)
+    el.toggle();
+    el.slideDown()
+  }else{
+    //do nothing
+  }
 }
 
 function tick() {
@@ -100,6 +123,12 @@ function tick() {
       .attr("x2", function(d) { return d.target.x; })
       .attr("y2", function(d) { return d.target.y; });
   node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+}
+
+function classSetter (d) {
+  return d._children ? "collapsed"
+      : d.children ? "expanded"
+      : "leaf";
 }
 
 function color(d) {

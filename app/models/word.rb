@@ -4,7 +4,12 @@ class Word < ActiveRecord::Base
 
   def nested_json(parent=nil, depth=0)
     puts 'going- word style============================'
-    h = {name: self.word, meaning: self.meaning}
+    h = {
+      name: self.word,
+      meaning: self.meaning,
+      type: self.class.to_s.downcase
+    }
+
     return h if depth > 1
     depth += 1
 

@@ -1,3 +1,88 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$leaf: #FFBA56;
+$collapsed: #7F4B00;
+$expanded: #FF9600;
+$svg-background: #FFF8DC;
+$background: #FFF8DC;
+$stroke:#FFBA56;
+
+body {
+  background: $background;
+  font-family: helvetica;
+}
+
+svg {
+  background: $svg-background;
+  border: 4px solid $collapsed;
+  border-radius: 5px;
+  float:left
+}
+
+.node ellipse {
+  cursor: pointer;
+  stroke: none;
+  stroke-width: 1.5px;
+}
+
+.leaf { fill: $leaf; }
+.collapsed { fill: $collapsed; }
+.expanded { fill: $expanded; }
+
+.node text {
+  font: 18px sans-serif;
+  pointer-events: none;
+  text-anchor: middle;
+}
+
+line.link {
+  fill: none;
+  stroke: $stroke;
+  stroke-width: 1.5px;
+}
+
+#info-container {
+  background: $collapsed;
+  border: 4px solid $collapsed;
+  border-radius: 5px;
+  width: 180px;
+  height: 600px;
+  float: right;
+  overflow: scroll;
+}
+
+#info-container {
+  h4 {
+    color: white;
+    font-weight: bold;
+    margin: 0 auto;
+  }
+}
+
+.info {
+  margin-bottom: 5px;
+  padding:5px;
+}
+
+.info.wordy {background: $collapsed;}
+.info.rooty { background: $collapsed; }
+
+.info .term {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 3px;
+  background: $leaf;
+  padding: 3px;
+}
+
+.info .def {
+  color: white;
+}
+
+#conti {
+  margin: 0 auto;
+  width: 1050px;
+}
+

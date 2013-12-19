@@ -5,7 +5,12 @@ class Root < ActiveRecord::Base
   def nested_json(parent=nil, depth=0)
     puts 'going- root style============================'
     depth += 1
-    h = {name: self.root_db, meaning: self.meaning}
+    h = {
+      name: self.root_db,
+      meaning: self.meaning,
+      type: self.class.to_s.downcase
+    }
+
     children =  self.words
                     .reject { |w| w==parent }
                     .sort_by{|word| word.roots.count}
