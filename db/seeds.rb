@@ -56,7 +56,7 @@ def scrape_words(link)
   words
 end
 
-#scrape 
+scrape 
 
 Wordnik.configure do |config|
   config.api_key = '9955ab21bdae62265b3360167e504ce6f2864356798b6941f'
