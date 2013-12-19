@@ -7,7 +7,6 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-require 'pry'
 require 'nokogiri'
 require 'open-uri'
 

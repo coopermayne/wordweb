@@ -36,9 +36,10 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
+gem 'wordnik'
+gem 'nokogiri'
 
 group :development, :test do
-  gem 'wordnik'
   gem "pry-rails"
   gem "pry-debugger"
   gem "pry-stack_explorer"
